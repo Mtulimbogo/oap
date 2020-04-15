@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+{% block mainbody %}
+<div class="app-main__outer">
+                    <div class="app-main__inner">
+                        <div class="app-page-title">
+                            <div class="page-title-wrapper">
+                                <div class="page-title-heading">
+                                    <div class="page-title-icon">
+                                        <i class="pe-7s-display1 icon-gradient bg-premium-dark">
+                                        </i>
+                                    </div >
+                                    <div class = "col-sm-12">
+                                       REJECTED STUDENT APPLICANTS
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+</div>
+<div class="col-sm-12">
+    <div class="main-card mb-3 card">
+
+        <div class="card-body">
+        <div class = "row">
+            <div class = "col-sm-12">
+                <h5 class="card-title">Rejected Student Applicants By the University</h5><!--Revoked Applicants-->
+            </div>
+
+        </div>
+        <br>
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Application ID</th>
+                    <th>Name of Applicant</th>
+                    <th>Date of Approval (dd/mm/yyyy)</th>
+                    <th>Ranking (%)</th>
+                    <th>Approve</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for dsapp in disapproved_aplc %}
+                <tr>
+                    <td>{{dsapp.id}}</td>
+                    <td>{{dsapp.first_name}} {{dsapp.last_name}}</td>
+                    <td>{{dsapp.approved_on}}</td>
+                    <td>{{dsapp.rank_level}}</td>
+                    <td>
+                        {% comment %} <a href="decision_to_stdnt/{{dsapp.id}}"> {% endcomment %}
+                        <a href=" {% url 'ega_revoke_stdnt' dsapp.id %}  ">
+
+                            <button type="button" data-toggle="tooltip" title="" style ="float: left; text-align: center" data-placement="bottom" class="btn-shadow mr-3 btn btn-success " data-original-title="Approve the Applicant">
+                                <i class="fas fa-user-check"></i>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+             </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+
+{% endblock mainbody %}

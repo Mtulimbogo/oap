@@ -1,0 +1,176 @@
+{% extends 'application/pages/layout.html' %}
+{% load static %}
+{% block content %}
+
+  <!-- Content Wrapper. Contains page content -->
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Application Guidelines</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fas fa-minus"></i></button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
+                    <div class="row">
+                      <div class="col-12 col-sm-4">
+                        <div class="info-box bg-light">
+                          <div class="info-box-content">
+                            <span class="info-box-text text-center text-muted">Before application</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-4">
+                        <div class="info-box bg-light">
+                          <div class="info-box-content">
+                            <span class="info-box-text text-center text-muted">Application Process</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-4">
+                        <div class="info-box bg-light">
+                          <div class="info-box-content">
+                            <span class="info-box-text text-center text-muted">Complete application</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <h6><strong>Before application</strong></h6>
+                          <div class="post">
+                            <!-- /.user-block -->
+                            <p>Before beginning an application please read the Application instructions carefully.
+                                Application documents shall be submitted in English. It is the candidate’s
+                                responsibility to ensure that the application is complete, including referee assessments.
+                                <br> <strong> All Referee assessment and recommendation
+                                letter, the National ID Number should be referenced as the
+                                Identification and should be verified by the referee.
+                              </strong>
+                            </p>
+
+                            <p>
+                              <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i> Demo File 1 v2</a>
+                            </p>
+                          </div>
+
+                          <div class="post clearfix">
+                              <h6><strong>Application Process</strong></h6>
+                            <!-- /.user-block -->
+                            <ol>
+                                <li>Complete all tasks listed for the Programme application checklist.</li>
+                                <li> Print the entire application. </li>
+                                <li> Save the PDF version of the entire, completed application documents.</li>
+                                <li> Submit the completed electronic application through submission-email.</li>
+                                <li>It is the candidate’s responsibility to make sure that the referee’s assessments and recommendation letters reaches the Secretariat. The Secretariat will inform the candidate by email once received.</li>
+                                <li> For technical help, call or email from 8:00 a.m. to 8:00 p.m. East African Time.</li>
+                                <li>For programme-related help, please contact email egovdidc@ega.go.tz</li>
+                            </ol>
+                            <p>
+                              <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i> Demo File 2</a>
+                            </p>
+                          </div>
+
+                          <div class="post">
+                              <h6><strong>Complete application</strong></h6>
+                              <!-- /.user-block -->
+                              <ol>
+                                  <li>Application details (form pages)
+                                  </li>
+                                  <li> Recent updated CV
+                                  </li>
+                                  <li> Nomination letter – maximum two pages (signed by the relevant department head of the nominating institution)</li>
+                                  <li> Institution transcripts (scanned and attached by the institution’s administrative staff) </li>
+                                  <li>Personal Motivation Statement – maximum two pages (self-evaluation written by the applicant)
+                                  </li>
+                                  <li> Two reference Letters – maximum two pages each (written by someone who knows the candidate in a non-academic capacity – this letter is attached to the nomination by the candidate)
+                                  </li>
+                                  <li>Research proposal – maximum two pages (written by the applicant)
+                                  </li>
+                                  <li>Project references – maximum five pages (written by the applicant) </li>
+                                  <li>Research contributions – maximum one page (written by the applicant)
+                                  </li>
+                              </ol>
+
+                            <p>
+                              <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i> Demo File 1 v1</a>
+                            </p>
+                          </div>
+                          <div class="text-center mt-5 mb-3">
+                              <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-arrow-right"> Go to Next Step</i> </a>
+                            </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
+                    <h3 class="text-primary"><i class="fas fa-file-word"></i> Sample CV format contents</h3>
+                    <p class="text-muted">
+                        <div class="image">
+                            <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img elevation-2" alt="User Image">
+                            Picture Sample
+                          </div>
+                    </p>
+                    <br>
+
+                    <h5 class="mt-5 text-muted">Project files</h5>
+                          EXPERIENCE (Work/Practical Training) <br>
+                          e.g. Web & Graphic Designer (MYM Web Design, 2011 –Present)Creative Web Designer (Visual Fusion Web Design, 2009 –2011)
+                         <hr> EDUCATION <br>
+                          e.g. Bachelor of IT (Mbeya university – 1999 –2001)
+                          Iyunga high school ( Mbeya – 1996)
+                          <hr>SKILLS
+                          <br><strong>Programming Skills:</strong>
+                          _______________________________ <br>
+                          e.g. Html/Html5, Css/Css3, JavaScript/JQuery, Php, Asp.net,
+                          Bootstrap Structure
+                          <br> <strong>Operating Systems:</strong>
+                          _______________________________ <br>
+                          e.g. Windows 7, Windows 8, Linux, Android
+                          <br> <strong>Applications:</strong>
+                          _______________________________ <br>
+                          e.g. Interchange ecommerce, eDirectory, Joomla,
+                          OsCommerce, ZenCart, WordPress
+                          <br> <strong>Networking:</strong>
+                          _______________________________<br>
+                          e.g. Switches, Routers, Firewalls, wireless configurations,
+                          cellular networks
+                          <br> <strong>System security:</strong>
+                          _______________________________<br>
+                          e.g. Penentration testing
+                          <br> <strong>Embedded systems:</strong>
+                          _______________________________<br>
+                          e.g. circuit design, microcontroller programming
+                          <br> <strong>Others :</strong>
+                          _______________________________
+                          <hr>EMERGENCY CONTACTS <br>
+                          Full name _______________(Relationship) 1
+                          [Address, Phone, Email] <br>
+                          Full name________________ (Relationship) 2
+                          [Address, Phone, Email] <br>
+                          Full name________________ (Relationship) 3
+                          [Address, Phone, Email] <br>
+                          <hr>OTHER INSTRUCTIONS
+                          (In this section all answers should be brief. )
+                    <div class="text-center mt-5 mb-3">
+                        <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-download"> Download CV Sample</i> </a>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+          </section>
+          <!-- /.content -->
+  {% endblock %}

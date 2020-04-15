@@ -1,0 +1,44 @@
+{% extends 'layout.html'%}
+{% block mainbody %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body"><h5 class="card-title">{{pagename}} Form</h5>
+                <form class="form-outline  mb-4" method="POST" action="/attachment" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <label class="control-label" for="text-input">What is type of attachment ?</label>
+                                <select class="form-control select-wide" name="attachname">
+                                        <option   disabled selected="">Select type</option>
+                                        <option  >CV</option>
+                                        <option  >Motivation statement</option>
+                                        <option  >NIDA</option>
+                                        <option  >Nomination letter</option>
+                                        <option  >Project references</option>
+                                        <option  >Reference Letter</option>
+                                        <option  >Research contributions</option>
+                                        <option  >Research Proposal</option>
+                                        <option  >University Transcript</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                        <label class="control-label" for="attachment">Select File to attach</label>
+                                        <input id="attachment" type="file"class="form-control" name="filename" required>
+                                </div>
+                            </div>
+                    </div>
+                    <button type="submit" class="mt-2 btn btn-primary">
+                        <i class="metismenu-icon fa fa-save"></i>
+                        Save & Continue
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

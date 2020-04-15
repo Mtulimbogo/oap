@@ -1,0 +1,101 @@
+{% extends 'index.html' %}
+{% block mainbody %}
+<div class="app-main__outer">
+                    <div class="app-main__inner">
+                        <div class="app-page-title">
+                            <div class="page-title-wrapper">
+                                <div class="page-title-heading">
+                                    <div class="page-title-icon">
+                                        <i class="pe-7s-display1 icon-gradient bg-premium-dark">
+                                        </i>
+                                    </div >
+                                    <div class = "col-sm-12">
+                                        {{doc_para}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+</div>
+<div class="col-md-12">
+    <div class="main-card mb-3 card">
+
+        <div class="card-body">
+        <div class = "row">
+        <div class = "col-sm-10">
+            <h5 class="card-title">Applicants Requesting selection</h5>
+        </div>
+        <div class= "col-sm-2 ">
+        {% comment %} <button onclick = "window.location.href = 'add_work_experience'" type="button" data-toggle="tooltip" title="" style ="float:right" data-placement="bottom" class="btn-shadow mr-3 btn btn-success " data-original-title="Add Work Experience">
+            <i class="fa fa-plus"></i>
+        </button> {% endcomment %}
+        </div>
+        </div>
+        <br>
+            <table class="mb-0 table table-bordered">
+                <thead>
+                <tr>
+                    <th>Name of Applicant</th>
+                    <th>Supporting Documents</th>
+                    <th>Ranking (%)</th>
+                     <th>Status</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+                    {% for aplc in new_aplicants %}
+                        <tr>
+                            <td>
+
+                                <a href="{% url 'applicant_single_page' aplc.id %}">{{aplc.first_name}} {{aplc.last_name}}</a>
+                            </td>
+                            <td>
+                                    <button onclick = "window.location.href = '#'" type="button" data-toggle="tooltip" title="" style ="float: left; text-align: center" data-placement="bottom" class="btn-shadow mr-3 btn btn-info " data-original-title="Document">
+                                        <i class="fa fa-file-word"></i>
+                                    </button>
+                                    <button onclick = "window.location.href = '#'" type="button" data-toggle="tooltip" title="" style ="float: left; text-align: center" data-placement="bottom" class="btn-shadow mr-3 btn btn-alternate " data-original-title="Document">
+                                        <i class="fa fa-file-word"></i>
+                                    </button>
+                                    <button onclick = "window.location.href = '#'" type="button" data-toggle="tooltip" title="" style ="float: left; text-align: center" data-placement="bottom" class="btn-shadow mr-3 btn btn-primary " data-original-title="Document">
+                                        <i class="fa fa-file-word"></i>
+                                    </button>
+                            </td>
+                            <td>{{aplc.rank_level}} %</td>
+                            <td>{{aplc.application_status}} %</td>
+                        </tr>
+                        {% endfor %}
+
+                </tbody>
+            </table>
+            <hr>
+                <!-- {% if new_aplicants.has_other_pages %}
+                <ul class="pagination">
+                    {% if new_aplicants.has_previous %}
+                        <li class="active"><a href="?page={{ new_aplicants.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in new_aplicants.paginator.page_range %}
+                    {% if new_aplicants.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if new_aplicants.has_next %}
+                        <li><a href="?page={{ new_aplicants.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+                {% endif %} -->
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+
+{% endblock mainbody %}

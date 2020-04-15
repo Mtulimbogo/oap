@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+{% block mainbody %}
+<div class="app-main__outer">
+                    <div class="app-main__inner">
+                        <div class="app-page-title">
+                            <div class="page-title-wrapper">
+                                <div class="page-title-heading">
+                                    <div class="page-title-icon">
+                                        <i class="pe-7s-display1 icon-gradient bg-premium-dark">
+                                        </i>
+                                    </div >
+                                    <div class = "col-sm-12">
+                                        Skills                                      
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+        </div>
+<div class="col-md-12">
+    <div class="main-card mb-3 card">
+    
+        <div class="card-body">
+        <div class = "row">
+        <div class = "col-sm-10">
+        <h5 class="card-title">Skills </h5>
+        </div>
+        <div class= "col-sm-2 ">
+        <button onclick = "window.location.href = 'add_skills'" type="button" data-toggle="tooltip" title=""
+         style ="float:right" data-placement="bottom" class="btn-shadow mr-3 btn btn-success " data-original-title="Add a Skill">
+            <i class="fa fa-plus"></i>
+        </button>
+        </div>
+        </div>
+        <br>        
+            <table class="mb-0 table table-bordered">
+                <thead>
+                <tr>
+                    
+                    <th>Skill Category</th>
+                    <th>Skill Level</th>
+                    <th>Explaination on Skill</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                
+                <tbody>
+                    {% for i in skills_work_data %}
+                        <tr>
+                        {% for j in i %}
+                            <td>{{j}}</td>                     
+                        {% endfor %}
+                        <td>
+                        <button onclick = "window.location.href = 'add_work_experience'" type="button" data-toggle="tooltip" title="" style ="float: left; text-align: center" data-placement="bottom" class="btn-shadow mr-3 btn btn-info " data-original-title=" {{tooltip_edit}} ">
+                        <i class="fas fa-edit"></i></button>
+                    </td>
+                    <td>
+                        <button onclick = "window.location.href = 'add_work_experience'" type="button" data-toggle="tooltip" title="" style ="float: left; text-align: center" data-placement="bottom" class="btn-shadow mr-3 btn btn-danger " data-original-title="{{ tooltip_delete }}">
+                        <i class="fas fa-trash-alt"></i></button>
+                    </td>   
+                            </tr>
+                    {% endfor %}
+                    </tbody>
+                    
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+
+    
+
+
+{% endblock mainbody %}

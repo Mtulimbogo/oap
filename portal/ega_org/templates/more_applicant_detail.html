@@ -1,0 +1,246 @@
+
+{% extends 'index.html' %}
+{% load static i18n compress %}
+{% block mainbody %}
+
+<div class="app-main__outer">
+    <div class="app-main__inner">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    {% comment %} <div class="page-title-icon"></div> {% endcomment %}
+                        {% comment %} <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">  </i>{% endcomment %}
+                        <img src=" {{ MEDIA_URL }}{{user_avatar}} " alt="Applicant Passport Size Image in a blue background" width="90" class="img-thumbnail">
+                       
+                    {% for aplicant_data in apl_details %}
+                    <div> APPLICANT - <strong>{{aplicant_data.first_name|upper}} {{aplicant_data.last_name|upper}}</strong>
+                        <div class="page-title-subheading"> P.O.BOX 4547
+                        </div>
+                 </div>
+               </div>
+              </div>
+             </div>
+          </div>
+
+                    <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-lg-10">
+                                <div class="main-card mb-3 card">
+                                    <div class="card-body"><h5 class="card-title">PERSONAL PATICULARS</h5>
+                                        <div class="table-responsive table-striped ">
+                                            <table class="mb-0 table " style = "border: 1px solid black; border-collapse: collapse;">
+                                               
+                                                <tbody style = "border: 1px solid black; border-collapse: collapse;">
+                                               
+                                                <tr>
+                                                    {% comment %} <th scope="row">1</th> {% endcomment %}
+                                                    <td style = "border: 1px solid black; border-collapse: collapse;">E-Mail</td>
+                                                    <td style = "border: 1px solid black; border-collapse: collapse;">{{aplicant_data.email}}</td>
+                                                    
+                                                </tr>
+                                                 <tr>
+                                                    {% comment %} <th scope="row">1</th> {% endcomment %}
+                                                    <td style = "border: 1px solid black; border-collapse: collapse;">Gender</td>
+                                                    <td style = "border: 1px solid black; border-collapse: collapse;">{{aplicant_data.gender}}</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    {% comment %} <th scope="row">2</th> {% endcomment %}
+                                                    <td style = "border: 1px solid black; border-collapse: collapse;">Phone Number</td>
+                                                    <td style = "border: 1px solid black; border-collapse: collapse;">{{aplicant_data.phone_no}}</td>
+                                                    
+                                                </tr>
+                                                {% comment %} for data in appl_particulars
+                                                 <tr>
+                                                    {% comment %} <th scope="row">1</th> 
+                                                    <td>data.dob</td>
+                                                    <td>data.marital</td>
+                                                    
+                                                </tr> {% endcomment %}
+                                              
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="main-card mb-3 card">
+                                    <div class="card-body"><h5 class="card-title">ACADEMIC QUALIFICATIONS</h5>
+                                        <div class="table-responsive table-striped table-hover">
+                                            <table class="mb-0 table table table-bordered"  >
+                                            
+                                                <thead>
+                                            <tr>
+                                                <th>Level</th>
+                                                <th>Programmme</th>
+                                                <th>Institution</th>
+                                                <th>Reward</th>
+                                                <th>Attached Documment</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                            </tr>
+                                            </thead>
+
+
+                                               <tbody>
+                                               {% for accademic_list in aplicant_accademic %}
+                                                <tr>
+                                                 {% for a in accademic_list %}
+                                                  <td>{{a}}</td>
+                                                  {% endfor %}
+                                                    <td>
+                                                            <button onclick = "window.location.href = '#'" type="button" data-toggle="tooltip" title="" style ="float: left; text-align: center" data-placement="bottom" class="btn-shadow mr-3 btn btn-info " data-original-title="Document"> 
+                                                            {% comment %} <i class="fa fa-file-word"></i> 
+                                                             <iframe src="http://docs.google.com/gview?
+                                                            url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true"
+                                                            style="width:600px; height:500px;" frameborder="0">
+                                                        </iframe> {% endcomment %}
+                                                                <i class="fa fa-eye"> PDF</i>
+                                                             </button> 
+                                                    </td>
+                                                
+                                                 {% endfor %}
+                                                </tr>
+                                           
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                             <div class="col-lg-10">
+                                <div class="main-card mb-3 card">
+                                    <div class="card-body"><h5 class="card-title">SKILLS</h5>
+                                        <div class="table-responsive table-striped table-hover">
+                                            <table class="mb-0 table table table table-bordered " >
+                                            <col width="150"><col width="180"><col width="180"><col width="180">
+                                            
+                                                <thead>
+                                                <tr>
+                                                    
+                                                    <th>Skill Category</th>
+                                                    <th>Skill Level</th>
+                                                    <th>Skill description</th>
+                                                    <th>Attached Document</th> 
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for skills_list in aplicant_skills %}
+                                                    <tr>
+                                                        {% for j in skills_list %} 
+                                                                {% comment %} <th >Programming</th>
+                                                                <td>Low</td>
+                                                                <td>More on blablablaa</td> {% endcomment %}
+
+                                                             <td> {{j}}</td>
+                                                        
+                                                        {%endfor%}
+                                                    </tr>
+                                           {% endfor %}
+                                                
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-10">
+                                <div class="main-card mb-3 card">
+                                    <div class="card-body"><h5 class="card-title">WORK EXPERIENCE</h5>
+                                        <div class="table-responsive table-striped">
+                                            <table class="mb-0 table table table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>Institution</th>
+                                                    <th>Position</th>
+                                                    <th>Job description</th>
+                                                    <th>Supervisor's Contacts</th>
+                                                    <th>From</th>
+                                                    <th>To</th>
+                                                    
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for work_experience in apl_work_experience %}
+                                                <tr>
+                                                {% for j in work_experience %}
+                                                    {% comment %} <th > e-Government Authority</th>
+                                                    <td>Network Engineer</td>
+                                                    <td>blablablaa</td>
+                                                    <td>blebleble</td>
+                                                    <td>jan 2019</td>
+                                                    <td>Dec 2019</td> {% endcomment %}
+                                                   <td> {{j}}</td>
+                                                   {%endfor%}
+                                                </tr>
+                                               {%endfor%}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="col-lg-10"> <!--TO DO personal Qualification to be done from Model, Applicant form and Retrieving data to all applicants-->
+                                <div class="main-card mb-3 card">
+                                    <div class="card-body"><h5 class="card-title">PROFEESIONAL QUALIFICATIONS</h5>
+                                        <div class="table-responsive table-striped table-hover">
+                                            <table class="mb-0 table table table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    
+                                                    <th>Institution Name</th>
+                                                    <th>Course Name</th>
+                                                    <th>Country</th>
+                                                    <th>Attached Document</th> 
+                                                    <th>From</th>
+                                                    <th>To</th>                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                               <tr>
+                                                <th >US University</th>
+                                                <td>Artificial Intelligence</td>
+                                                <td>United States</td>
+                                                <td>
+                                                        <button onclick = "window.location.href = '#'" type="button" data-toggle="tooltip" title="" style ="float: left; text-align: center" data-placement="bottom" class="btn-shadow mr-3 btn btn-alternate " data-original-title="Document">
+                                                            <i class="fa fa-eye"> PDF</i>
+                                                            
+                                                        </button>
+                                   
+                                                </td>
+                                                <td>Feb 2019</td>
+                                                <td>Dec 2019</td>
+                                            </tr>
+                                           
+                                                
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        <div class="col-lg-10">
+
+                            Status: <em style="color:blue;">{{ approval_status }} </em>
+                        </div>
+                        <div class="col-lg-10">
+{% comment %} 
+                            <a href=" {% url 'reject_aplc' aplc.id %}  "><button class="mt-2 btn btn-danger"> <i class="fa fa-minus-circle"></i> REJECT</button></a>
+
+                            <a href=" {% url 'accept_aplc' aplc.id %}  "> <button class="mt-2 btn btn-primary"> <i class="fa fa-check"></i> ACCEPT</button></a> {% endcomment %}
+                             <a href=" {% url 'reject_aplc' aplicant.id %}  "><button class="mt-2 btn btn-danger"> <i class="fa fa-minus-circle"></i> REJECT</button></a>
+                              <a href=" {% url 'accept_aplc' aplicant.id %}  "><button class="mt-2 btn btn-primary"> <i class="fa fa-check"></i> ACCEPT</button></a>
+                        </div>
+                    </div>
+                       </div> 
+        </div>
+    </div>
+    {% compress js %}
+<script type="text/javascript" src="./assets/scripts/main.js"></script>
+  
+{% endcompress %}
+</body>
+{% endblock mainbody %}

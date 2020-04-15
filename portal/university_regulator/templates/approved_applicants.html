@@ -1,0 +1,56 @@
+{% extends 'uni_layout.html' %}
+{% block mainbody %}
+<div class="col-sm-12">
+    <div class="main-card mb-3 card">
+    
+        <div class="card-body">
+        <div class = "row">
+            <div class = "col-sm-12">
+                <h5 class="card-title">Approved Applicants</h5>
+            </div> 
+            
+        </div>
+        <br>  
+        <div class="table-responsive">
+           
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Application ID</th>
+                    <th>Name of Applicant</th>
+                    <th>Date of Approval (dd/mm/yyyy)</th>
+                    <th>Ranking (%)</th>
+                    <th>Disapprove</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for aplicant in approved_aplc%}
+                <tr>
+                    <td>{{aplicant.id}}</td>
+                    <td>{{aplicant.first_name}} {{aplicant.last_name}}</td>
+                    <td>{{aplicant.approved_on}}</td> 
+                    <td>{{aplicant.rank_level}}</td>
+                    <td>
+                        
+                        <a href=" {% url 'revork_stdnt' aplicant.id %}  ">
+                        
+                            <button onclick = "window.location.href = 'add_work_experience'" type="button" data-toggle="tooltip" title="" style ="float: left; text-align: center" data-placement="bottom" class="btn-shadow mr-3 btn btn-danger " data-original-title="Disapprove the Applicant">
+                                <i class="fas fa-user-times"></i>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+             </div>  
+        </div>
+    </div>
+</div>
+
+</div>
+
+    
+
+
+{% endblock mainbody %}

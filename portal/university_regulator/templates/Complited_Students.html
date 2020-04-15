@@ -1,0 +1,96 @@
+{% extends 'uni_layout.html' %}
+{% block mainbody %}
+
+<div class="col-sm-12">
+    <div class="main-card mb-3 card">
+    
+        <div class="card-body">
+        <div class = "row">
+        {% comment %} <div class = "col-sm-10"> {% endcomment %}
+        <h5 class="card-title">UnApproved Applicants</h5>
+        {% comment %} </div> {% endcomment %}
+        {% comment %} <div class= "col-sm-2 ">
+        <button onclick = "window.location.href = 'add_work_experience'" type="button" data-toggle="tooltip" title="" style ="float:right" data-placement="bottom" class="btn-shadow mr-3 btn btn-success " data-original-title="Add Work Experience">
+            <i class="fa fa-plus"></i>
+        </button>
+        </div> {% endcomment %}
+        </div>
+        <br>        
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Application ID</th>
+                    <th>Name of Applicant</th>
+                    <th>Date of Action (dd/mm/yyyy)</th>
+                    <th>Year Of Study</th>
+                    <th>Resume</th>
+                    <th>Supporting Documents</th>
+                    <th>Ranking (%)</th>
+                    <th>Approve</th>
+                    {% comment %} <th>Disapprove</th> {% endcomment %}
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>22/02/2020</td>
+                    <td>2</td>
+                    
+                    <td>
+                    <button onclick = "window.location.href = 'add_work_experience'" type="button" data-toggle="tooltip" title="" style ="float: left; text-align: center" data-placement="bottom" class="btn-shadow mr-3 btn btn-info " data-original-title="Approve the Applicant">
+            <i class="fa fa-file-alt"></i> 
+        </button>
+                    </td>
+                    
+                    <td>
+                    <button onclick = "window.location.href = 'add_work_experience'" type="button" data-toggle="tooltip" title="" style ="float: left; text-align: center" data-placement="bottom" class="btn-shadow mr-3 btn btn-info " data-original-title="Approve the Applicant">
+            <i class="fa fa-file-word"></i> 
+        </button>
+        <button onclick = "window.location.href = 'add_work_experience'" type="button" data-toggle="tooltip" title="" style ="float: left; text-align: center" data-placement="bottom" class="btn-shadow mr-3 btn btn-alternate " data-original-title="Approve the Applicant">
+            <i class="fa fa-file-word"></i> 
+        </button>
+        <button onclick = "window.location.href = 'add_work_experience'" type="button" data-toggle="tooltip" title="" style ="float: left; text-align: center" data-placement="bottom" class="btn-shadow mr-3 btn btn-primary " data-original-title="Approve the Applicant">
+            <i class="fa fa-file-word"></i> 
+        </button>
+                    </td>
+                    <td>95</td>
+                    <td><button onclick = "window.location.href = 'add_work_experience'" type="button" data-toggle="tooltip" title="" style ="float: left; text-align: center" data-placement="bottom" class="btn-shadow mr-3 btn btn-success " data-original-title="Approve the Applicant">
+            <i class="fas fa-user-check "></i>
+        </button></td> 
+                            {% comment %} <td><button onclick = "window.location.href = 'add_work_experience'" type="button" data-toggle="tooltip" title="" style ="float: left; text-align: center" data-placement="bottom" class="btn-shadow mr-3 btn btn-danger " data-original-title="Disapprove the Applicant">
+            <i class="fas fa-user-times"></i>
+        </button></td> {% endcomment %}
+                </tr>
+                <tr>
+                    <td>2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    {% comment %} <td>Otto</td> {% endcomment %}
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <td>3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    {% comment %} <td>Otto</td> {% endcomment %}
+                    <td>@mdo</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+
+    
+
+
+{% endblock mainbody %}

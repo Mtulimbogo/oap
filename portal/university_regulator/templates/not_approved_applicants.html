@@ -1,0 +1,56 @@
+{% extends 'uni_layout.html' %}
+{% block mainbody %}
+<div class="col-sm-12">
+    <div class="main-card mb-3 card">
+
+        <div class="card-body">
+        <div class = "row">
+            <div class = "col-sm-12">
+                <h5 class="card-title">Revoked Applicants</h5>
+            </div>
+
+        </div>
+        <br>
+        <div class="table-responsive">
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Application ID</th>
+                    <th>Name of Applicant</th>
+                    <th>Date of Approval (dd/mm/yyyy)</th>
+                    <th>Ranking (%)</th>
+                    <th>Approve</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for dsapp in disapproved_aplc %}
+                <tr>
+                    <td>{{dsapp.id}}</td>
+                    <td>{{dsapp.first_name}} {{dsapp.last_name}}</td>
+                    <td>{{dsapp.approved_on}}</td>
+                    <td>{{dsapp.rank_level}}</td>
+                    <td>
+                        {% comment %} <a href="/revork_stdnt/{{dsapp.id}}"> {% endcomment %}
+                        <a href=" {% url 'revork_stdnt' dsapp.id %}  ">
+
+                            <button type="button" data-toggle="tooltip" title="" style ="float: left; text-align: center" data-placement="bottom" class="btn-shadow mr-3 btn btn-success " data-original-title="Approve the Applicant">
+                                <i class="fas fa-user-check"></i>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+             </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+
+{% endblock mainbody %}

@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+{% block mainbody %}
+
+
+<div class="app-main__outer">
+                    <div class="app-main__inner">
+                        <div class="app-page-title">
+                            <div class="page-title-wrapper">
+                                <div class="page-title-heading">
+                                    <div class="page-title-icon">
+                                        <i class="pe-7s-display1 icon-gradient bg-premium-dark">
+                                        </i>
+                                    </div >
+                                    <div class = "col-sm-12">
+                                        Add Work Experience                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+</div>
+{% comment %} </div> {% endcomment %}
+
+<div class="col-lg-12" >
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+             
+
+<div class = "row">
+        <div class = "col-sm-10">
+        <h5 class="card-title">Add Work Experience</h5>
+        </div>
+        <div class= "col-sm-2 ">
+        <button type="button" onclick = "window.location.href = 'work_experience'" data-toggle="tooltip" title="" style ="float:right" data-placement="bottom" class="btn-shadow mr-3 btn btn-success " data-original-title="View Work Experiences">
+            <i class="fa fa-arrow-left"></i>
+        </button>
+        </div>
+        </div>
+            <form action="add_work_experience" method="post" enctype = "application/w-xxx-form-urlencoded">                                      
+                {% csrf_token %}
+                <div class="position-relative form-group"><label for="institution_name" class="">Institution/Organization</label><input name="institution_name" id="institution_name" value={{institution_name}} placeholder="Institution/Organization Name" type="text" class="form-control" required></div>
+                <div class="position-relative form-group"><label for="supervisor_name" class="">Supervisor Name</label><input name="supervisor_name" id="supervisor_name" value={{supervisor_name}} placeholder="Supervisor Name" type="text" class="form-control" required></div>
+                <div class="position-relative form-group"><label for="supervisor_number" class="">Supervisor Telephone Number</label><input name="supervisor_number" id="supervisor_number" class="form-control" value={{supervisor_number}} placeholder="Supervisor Telephone Number" type="text" class="form-control" required></div>
+                <div class="position-relative form-group"><label for="job_title" class="">Job Title</label><input name="job_title" id="job_title" placeholder="Job Title" type="text" class="form-control" value={{job_title}}  required></div>
+                <div class="position-relative form-group"><label for="institution_address" class="">Institution Address</label><input name="institution_address" id="institution_address" value={{institution_address}} placeholder="Institution Address" type="text" class="form-control" required></div>
+                <div class="position-relative form-group"><label for="duties" class="">Duties Responsibilities</label><input name="duties" id="duties" placeholder="Duties Responsibilities" value={{duties}}  type="text" class="form-control" required></div>
+
+                <div class="position-relative form-group"><label for="start_date" class="">Start Date</label><input name="start_date" id="start_date" placeholder="Start Date"  type="date" class="form-control" required pattern="\d{4}-\d{2}-\d{2}"></div>    
+                <div class="position-relative form-group"><label for="end_date" class="">End Date</label><input name="end_date" id="end_date" placeholder="end_date"  type="date" class="form-control"  pattern="\d{4}-\d{2}-\d{2}" ></div>
+                <div class="position-relative form-group"><label for="current_job" class="">Is this your Current Job</label><select name="current_job" id="current_job"  class="form-control" autocomplete = "Off" > 
+                {% comment 'TODO' %}
+                add the get part for the selection
+                {% endcomment %}
+                <option value="1">No</option>
+                <option value="2">Yes</option>
+                </select>
+                           
+                    <button type="submit" class="mt-3 btn btn-primary"><i class="fa fa-check"></i> 
+                    Save</button>
+                </div>
+            </form>
+            </div>
+        </div> 
+    </div>
+</div>
+<script>
+    if ($('#current_job').val() == '2') {
+    $('#end_date').show();
+}
+</script>
+{% endblock mainbody %}

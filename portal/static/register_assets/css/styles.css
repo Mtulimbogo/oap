@@ -1,0 +1,68 @@
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+html {
+    width: 100%;
+}
+
+.headings {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 25px;
+    color: #306091;
+    text-shadow: 3px 3px 2px rgba(150, 150, 150, 0.5);
+}
+
+@media (max-width:500px) {
+    .headings {
+        font-size: 18px;
+    }
+}
+
+.foot {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.foot p {
+    margin-bottom: 0px;
+}
+
+.outer {
+    background-image: url(../img/bg3.jpg);
+    background-repeat: no-repeat;
+}
+
+.inner {
+    background: linear-gradient(60deg, rgba(41, 88, 70, 0.9), rgba(135, 185, 156, 0.8));
+}
+
+.links {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.tz-logo {
+    height: 75px;
+    width: 90px;
+}
+
+.ega-logo {
+    height: 75px;
+    width: 80px;
+    float: right;
+}
+
+.reg-button {
+    margin-top: 15px;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+}

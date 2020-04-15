@@ -1,0 +1,22 @@
+{
+    "python.linting.pylintEnabled": true,
+    "python.pythonPath": "C:\\Users\\eGOVRIDC\\envs\\prod_oap\\Scripts\\python.exe",
+    "python.formatting.provider": "autopep8",
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#858ee7",
+        "activityBar.activeBackground": "#858ee7",
+        "activityBar.activeBorder": "#f5cace",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#f5cace",
+        "activityBarBadge.foreground": "#15202b",
+        "titleBar.activeBackground": "#5b66de",
+        "titleBar.inactiveBackground": "#5b66de99",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveForeground": "#e7e7e799",
+        "statusBar.background": "#5b66de",
+        "statusBarItem.hoverBackground": "#858ee7",
+        "statusBar.foreground": "#e7e7e7"
+    },
+    "peacock.color": "#5b66de"
+}
