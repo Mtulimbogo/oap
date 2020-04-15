@@ -36,6 +36,9 @@ For convenience, you can keep your normal user logged in on Chrome and your supe
 Requirements
 ^^^^^^^^^^^
 * To install development Requirements use
+
+::
+
     $ pip install -r req.txt
 
 Type checks
