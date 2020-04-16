@@ -1,6 +1,6 @@
 {
     "python.linting.pylintEnabled": true,
-    "python.pythonPath": "C:\\Users\\eGOVRIDC\\envs\\prod_oap\\Scripts\\python.exe",
+    "python.pythonPath": "/home/administrator/.virtualenvs/prod/bin/python",
     "python.formatting.provider": "autopep8",
     "workbench.colorCustomizations": {
         "activityBar.background": "#858ee7",
@@ -16,7 +16,9 @@
         "titleBar.inactiveForeground": "#e7e7e799",
         "statusBar.background": "#5b66de",
         "statusBarItem.hoverBackground": "#858ee7",
-        "statusBar.foreground": "#e7e7e7"
+        "statusBar.foreground": "#e7e7e7",
+        "statusBar.border": "#5b66de",
+        "titleBar.border": "#5b66de"
     },
     "peacock.color": "#5b66de"
 }

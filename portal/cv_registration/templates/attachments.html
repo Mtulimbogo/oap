@@ -1,44 +1,77 @@
-{% extends 'layout.html'%}
+{% extends 'layout.html' %}
 {% block mainbody %}
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="main-card mb-3 card">
-            <div class="card-body"><h5 class="card-title">{{pagename}} Form</h5>
-                <form class="form-outline  mb-4" method="POST" action="/attachment" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <div class="position-relative form-group">
-                                <label class="control-label" for="text-input">What is type of attachment ?</label>
-                                <select class="form-control select-wide" name="attachname">
-                                        <option   disabled selected="">Select type</option>
-                                        <option  >CV</option>
-                                        <option  >Motivation statement</option>
-                                        <option  >NIDA</option>
-                                        <option  >Nomination letter</option>
-                                        <option  >Project references</option>
-                                        <option  >Reference Letter</option>
-                                        <option  >Research contributions</option>
-                                        <option  >Research Proposal</option>
-                                        <option  >University Transcript</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                                <div class="position-relative form-group">
-                                        <label class="control-label" for="attachment">Select File to attach</label>
-                                        <input id="attachment" type="file"class="form-control" name="filename" required>
+
+<div class="app-main__outer">
+                    <div class="app-main__inner">
+                        <div class="app-page-title">
+                            <div class="page-title-wrapper">
+                                <div class="page-title-heading">
+                                    <div class="page-title-icon">
+                                        <i class="pe-7s-display1 icon-gradient bg-premium-dark">
+                                        </i>
+                                    </div >
+                                    <div class = "col-sm-12">
+                                        Add Attachments                                    
+                                    </div>
                                 </div>
                             </div>
-                    </div>
-                    <button type="submit" class="mt-2 btn btn-primary">
-                        <i class="metismenu-icon fa fa-save"></i>
-                        Save & Continue
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
+                        </div>
 </div>
-{% endblock %}
+{% comment %} </div> {% endcomment %}
+
+<div class="col-lg-12" >
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+             
+
+<div class = "row">
+        <div class = "col-sm-10">
+        <h5 class="card-title">  Add Attachments </h5>
+        </div>
+        <div class= "col-sm-2 ">
+        <button type="button" onclick = "window.location.href = '{{redirection_location}}'" data-toggle="tooltip" title="" 
+        style ="float:right" data-placement="bottom" class="btn-shadow mr-3 btn btn-success " data-original-title="{{tool_tip_back}}">
+            <i class="fa fa-arrow-left"></i>
+        </button>
+        </div>
+        </div>
+        <form class="form-outline  mb-4" method="POST" action="add_attachments" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="position-relative form-group">
+                        <label class="control-label" for="text-input">Select Attachment Type</label>
+                        <select class="form-control select-wide" name="attachment_type" id="attachment_type">
+                                <option  value="" disabled selected="">Select type</option>
+                                <option  value="CV">CV</option>
+                                <option  value="motivation" >Motivation statement</option>
+                                <option  value="nida">NIDA</option>
+                                <option  value="nomination_letter">Nomination letter</option>
+                                <option  value="project_references">Project references</option>
+                                <option  value="reference_letter">Reference Letter</option>
+                                <option  value="certificates">Research contributions</option>
+                                <option  value="research_proposal">Research Proposal</option>
+                                <option  value="university_transcript">University Transcript</option>
+                                <option  value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                        <div class="position-relative form-group">
+                                <label class="control-label" for="attachment">Select File to attach</label>
+                                <input id="attachment" type="file"class="form-control" name="attachment" required>
+                        </div>
+                    </div>
+            </div>
+            <button type="submit" class="mt-2 btn btn-primary">
+                <i class="metismenu-icon fa fa-save"></i>
+                Save & Continue
+            </button>
+        </form>
+    </div>
+</div> 
+</div>
+</div>
+
+{% endblock mainbody %}

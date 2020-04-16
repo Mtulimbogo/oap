@@ -12,6 +12,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+import clamd
 User = get_user_model()
 
 
@@ -188,11 +189,112 @@ def add_education(request):
 def contact_details(request):
     return render(request, "contact_details.html")
 
+def rename_dict(d, k):
+    if k in d:
+        return d[k]
+
+@login_required(login_url='/accounts/login/')
+def view_attachments(request):
+    # print("nipo attachement...")
+    applicant_instance = models.applicant.objects.get(user=request.user)
+    attachment_data = models.attachment.objects.filter(applicant=applicant_instance, status=True).values_list(
+         "id", "attachment_type", "last_update")
+    print(attachment_data)
+
+    d = {
+        "CV":"CV",
+        "motivation":"Motivation statement",
+        "nida":"NIDA",
+        "nomination_letter":"Nomination letter",
+        "project_references":"Project references",
+        "reference_letter":"Reference Letter",
+        "research_contributions":"Research contributions",
+        "research_proposal":"Research Proposal",
+        "university_transcript":"University Transcript",
+        "other":"Other"
+    }
+    
+    result = []
+    for p in list(attachment_data):
+        a = [p[0]] 
+        res = rename_dict(d,p[1])
+        a = [p[0],res,p[2]]
+        result.append(a)
+    print(result)
+
+    return render(request, "attach.html", {"attachment_data": list(result), "page_title":"Attachments", "tool_tip_add":"Add Attachment","redirection_location":"add_attachments"})
+
+@login_required(login_url='/accounts/login/')
+def add_attachments(request):
+    if request.method == "POST" and request.FILES['attachment']:
+        user_id = request.user.id
+        for f in request.FILES.getlist('attachment'):
+            if clean_attachment(request, user_id, f):
+
+                ext = f.name.split('.')[-1]
+                file_name = "attachment_" + " {} ".format(int(user_id)) \
+                    + "_ " \
+                    + " {}.{}".format(uuid4().hex, ext)\
+
+
+                user_dir = "user_" + str(user_id)
+
+                save_path = os.path.join(settings.MEDIA_ROOT, user_dir)
+                pathlib.Path(save_path).mkdir(parents=True, exist_ok=True)
+                file_path = os.path.join(save_path, file_name)
+                try:
+                    save_file(f, file_path)
+                    att = models.attachment()
+                    # att.attachment_name = request.POST['attachname']
+                    att.path_to_file = file_path
+                    att.attachment_type = request.POST["attachment_type"]
+                    att.applicant_id = models.applicant.objects.get(user=request.user).id
+                    att.status = True
+                    att.save()  
+                    if request.method == "POST" and request.FILES['attachment']:
+                        messages.success(request,"Attachment saved Successfully")     
+                except Exception as e:
+                    
+                    messages.error(request,"There was a technical error, your attachment couldnt be saved")
+                    print(e)      
+            else:
+                
+                messages.error(
+                request, "Your Attachment was found to have a virus. Please scan your attachments before uploading")
+                return redirect(add_attachments)
+        return redirect(view_attachments)
+    return render(request, "attachments.html", {'pagename': "Add Attachments", "tool_tip_back":"View Attachments", "redirection_location":"view_attachments", "page_title":"Attachments"})
+
 
 NORMAL_HEADER = 'Virus Found in Submitted Attachment'
 ADMIN_HEADER = "A USER HAS UPLOADED A POTENTIALLY MALICIOUS ATTACHMENT"
 ADMIN_EMAIL = "admin@eganet.go.tz"
+CD = clamd.ClamdUnixSocket()
 
+def clean_attachment(request, request_user_id, file):
+    # print(request.FILES.getlist())
+    for f in request.FILES.getlist('attachment'):
+        
+        # scan stream
+        scan_results = CD.instream(f)
+        print(scan_results)
+        if (scan_results['stream'][0] == 'OK'): # TODO  change back 
+            return True
+        elif (scan_results['stream'][0] == 'FOUND'):
+            # print("kirusi COVID19!!!!!!")
+            infecting_user = User.objects.get(pk=request_user_id)
+            ADMIN_SUBJECT = "The user {} {} with email {} has submitted the following file ' \
+            'flagged as containing a virus: \n\n {} ".format(infecting_user.first_name, infecting_user.last_name, infecting_user.email,
+                                                                f.name)
+            USER_SUBJECT = "Your Attachment was found to be with a virus. \n\n Please upload virus-free attachments.  \
+                \n\n\n Operations Officer, \n admin@eganet.go.tz "
+            infecting_user_mail = (NORMAL_HEADER, USER_SUBJECT, "noreply@eganet.go.tz", [str(infecting_user.email)])
+            admin_user_mail = (ADMIN_HEADER, ADMIN_SUBJECT, "noreply@eganet.go.tz", ["admin@eganet.go.tz"])
+            
+            # TODO make it true later in production
+            send_mass_mail((infecting_user_mail, admin_user_mail), fail_silently=settings.FAIL_SILENTLY)
+            return False
+    return False
 
 def additional_attachments(request):
     if request.method == 'POST' and request.FILES['filename']:
@@ -203,12 +305,14 @@ def additional_attachments(request):
 
         for f in request.FILES.getlist('filename'):
             # scan stream
-            scan_results = cd.instream(f)
 
-            if (scan_results['stream'][0] == 'OK'):
+            scan_results = cd.instream(f)
+            print(scan_results)
+            if (scan_results['stream'][0] == 'OK'): # TODO  change back 
+            # if (scan_results['stream'][0] == 'FOUND'): # TODO delete line
                 # start to create the file name
                 ext = f.name.split('.')[-1]
-                file_name = " {} ".format(int(user_id)) \
+                file_name = "attachment_" + " {} ".format(int(user_id)) \
                     + "_ " \
                     + " {}.{}".format(uuid4().hex, ext)\
 
@@ -217,32 +321,33 @@ def additional_attachments(request):
 
                 save_path = os.path.join(settings.MEDIA_ROOT, user_dir)
                 pathlib.Path(save_path).mkdir(parents=True, exist_ok=True)
-                file_path = os.path.join(settings.MEDIA_ROOT, file_name)
+                file_path = os.path.join(save_path, file_name)
                 # path = default_storage.save(save_path, request.FILES['filename'])
                 save_file(f, file_path)
 
                 attachname = request.POST['attachname']
 
-                att = models.attachments()
+                att = models.attachment()
                 att.attachment_name = attachname
                 att.path_to_file = file_path
-                att.applicant_id = models.applicant.objects.get(user=request.user)
+                att.applicant_id = models.applicant.objects.get(user=request.user).id
                 att.save()
-
+                return render(request, "attachments.html", {'pagename': "Attachments Needed"})
             elif (scan_results['stream'][0] == 'FOUND'):
+                # print("kirusi COVID19!!!!!!")
+                print(f.name)
                 infecting_user = User.objects.get(pk=request.user.id)
-                ADMIN_SUBJECT = "The user {} {} with email {} has submitted the following file ' \
-                'flagged as containing a virus: \n\n {} ".format(infecting_user.first_name, infecting_user.last_name, infecting_user.email,
+                ADMIN_SUBJECT = "The user {} {} with email {} has submitted the following file '{}' flagged as containing a virus: ".format(infecting_user.first_name, infecting_user.last_name, infecting_user.email,
                                                                  f.name)
                 USER_SUBJECT = "Your Attachment was found to be with a virus. \n\n Please upload virus-free attachments.  \
                     \n\n\n Operations Officer, \n admin@eganet.go.tz "
                 infecting_user_mail = (NORMAL_HEADER, USER_SUBJECT, "noreply@eganet.go.tz", [str(infecting_user.email)])
-                admin_user_mail = (ADMIN_HEADER, ADMIN_SUBJECT, "noreply@eganet.go.tz", ["admin@eganet.go.tz"])
+                admin_user_mail = (ADMIN_HEADER, ADMIN_SUBJECT, "clamd_scanner@eganet.go.tz", ["admin@eganet.go.tz"])
                 messages.error(
                     request, "Your Attachment was found to have a virus. Please scan your attachments before uploading")
                 # TODO make it true later in production
                 send_mass_mail((infecting_user_mail, admin_user_mail), fail_silently=settings.FAIL_SILENTLY)
-
+            return render(request, "attachments.html", {'pagename': "Attachments Needed"})
     return render(request, "attachments.html", {'pagename': "Attachments Needed"})
 
 
@@ -250,6 +355,7 @@ def save_file(file, filename):
     with open(filename, 'wb+') as destination:
         for chunk in file.chunks():
             destination.write(chunk)
+
 
 
 # def additional_attachments(request):

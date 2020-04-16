@@ -5,7 +5,7 @@ def get_applicant_image(request):
 
     try:
         data = applicant.objects.filter(user=request.user.id).values("user_image")
-        print(list(data)[0]["user_image"])
+        # print(list(data)[0]["user_image"])
         if list(data)[0]["user_image"] is None:
             edit_dict = {"user_avatar": "logo.png"}
             return edit_dict

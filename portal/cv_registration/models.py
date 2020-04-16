@@ -74,6 +74,7 @@ class applicant(models.Model):
     ]
     application_status = models.CharField(max_length=14, choices=APPROVAL_CHOICES,
                                           default=PENDING)
+    # TODO move to applicant student.  #@done
 
     approved_on = models.DateTimeField(default=timezone.now)
     rank_level = models.IntegerField(default=0)
@@ -165,17 +166,44 @@ class skill(models.Model):
 
 
 class attachment(models.Model):
-    attachment_name = models.CharField(max_length=50)
+
+    CV="CV"
+    motivation="Motivation statement"
+    nida="NIDA"
+    nomination_letter="Nomination letter"
+    project_references="Project references"
+    reference_letter="Reference Letter"
+    research_contributions="Research contributions"
+    research_proposal="Research Proposal"
+    university_transcript="University Transcript"
+    other="Other"
+
+    
+    
+    ATTACHMENT_CHOICES = [
+        (CV,"CV"),
+        (motivation,"Motivation Statement"),
+        (nida,"NIDA"),
+        (nomination_letter,"nomination_letter"),
+        (project_references,"Project References"),
+        (reference_letter,"Reference Letter"),
+        (research_contributions,"Research Contributions"),
+        (research_proposal,"research_proposal"),
+        (university_transcript,"university_transcript"),
+        (other,"Other"),
+    ]
+
+    # attachment_name = models.CharField(max_length=50)
     applicant = models.ForeignKey(applicant, on_delete=models.CASCADE)
     path_to_file = models.CharField(max_length=255)
     last_update = models.DateTimeField(auto_now_add=True)
-
-    def __init__(self, *arg):
-        super(attachment, self).__init__()
-        self.arg = arg
+    attachment_type = models.CharField(max_length=14, choices=ATTACHMENT_CHOICES,
+                                            default=other)
+    status = models.BooleanField(default=True)
 
     def __str__(self):
-        return (self.skill_name + str(self.applicant_id) + str(self.id))
+        return (self.attachment_type+ "_" + str(self.last_update))
+        # return (self.attachment_name + str(self.id))
 
 
 class application(models.Model):

@@ -12,5 +12,6 @@ urlpatterns = [
     path("education", views.education, name="education"),
     path("add_education", views.add_education, name="add_education"),
     path('contact_details', views.contact_details, name="contact_details"),
-    path('additional_attachments', views.additional_attachments, name="additional_attachments")
+    path('add_attachments', views.add_attachments, name="add_attachments"),
+    path("view_attachments",views.view_attachments, name="view_attachments"),
 ]
