@@ -7,7 +7,7 @@ import environ
 
 ROOT_DIR = Path(__file__).parents[2]
 # portal/)
-APPS_DIR = ROOT_DIR / "portal"
+APPS_DIR = ROOT_DIR / "oap_git"
 env = environ.Env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
